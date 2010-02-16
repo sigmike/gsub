@@ -8,8 +8,9 @@ Feature: Replace text in files
       Hello
       foo bar baz
       """
-    When I run "./gsub '/bar/' 'BAR' foo.txt"
-    Then the file "foo.txt" should contain
+    When I run gsub with "'/bar/' 'BAR' foo.txt"
+    Then the output should be empty
+    And the file "foo.txt" should contain
       """
       Hello
       foo BAR baz

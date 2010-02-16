@@ -16,8 +16,14 @@ Given /^there's a file "([^\"]*)" containing$/ do |file, string|
   end
 end
 
-When /^I run "([^\"]*)"$/ do |command|
-  system command
+When /^I run gsub with "([^\"]*)"$/ do |command|
+  Dir.chdir @temp_dir do
+    @output = %x(../gsub #{command} 2>&1)
+  end
+end
+
+Then /^the output should be empty$/ do
+  assert_equal "", @output
 end
 
 Then /^the file "([^\"]*)" should contain$/ do |file, string|

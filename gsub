@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+pattern, replacement, *files = ARGV
+
+files.each do |file|
+  path = Pathname.new(file)
+  data = path.read
+  data.gsub! eval(pattern), replacement
+  path.open("w") do |f|
+    f.write data
+  end
+end
