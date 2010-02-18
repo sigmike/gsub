@@ -28,6 +28,7 @@ end
 
 Then /^the file "([^\"]*)" should contain$/ do |file, string|
   path = @temp_dir + file
+  assert File.exist?(path), "#{file} doesn't exist"
   tempfile = Tempfile.new("expected_")
   tempfile.write string
   tempfile.close

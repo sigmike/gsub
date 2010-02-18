@@ -15,3 +15,8 @@ Feature: Replace text in files
       Hello
       foo plop plop
       """
+    And the file "foo.txt~" should contain
+      """
+      Hello
+      foo bar baz
+      """

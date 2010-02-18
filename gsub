@@ -7,6 +7,10 @@ pattern, replacement, *files = ARGV
 files.each do |file|
   path = Pathname.new(file)
   data = path.read
+  backup = Pathname.new(path.to_s + "~")
+  backup.open("w") do |f|
+    f.write data
+  end
   data.gsub! eval(pattern), replacement
   path.open("w") do |f|
     f.write data
